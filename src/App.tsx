@@ -1,17 +1,13 @@
-import countriesData from "./data/allCountriesData.json";
+import { Question } from "./Components/Question";
+import { RevealAnswer } from "./Components/RevealAnswer";
+import countries_capitals from "./data/countries&capitals.json"
 
 function App(): JSX.Element {
   return (
     <div>
-      <span>[</span>
-      {countriesData.map((countryData): JSX.Element => {
-        return (
-          <p
-            key={countryData.name.common}
-          >{`{ "country": "${countryData.name.common}", "capital": "${countryData.capital}" }, `}</p>
-        );
-      })}
-      <span>]</span>
+      <Question/>
+      <RevealAnswer/>
+      {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
     </div>
   );
 }
