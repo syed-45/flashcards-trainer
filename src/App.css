@@ -1,0 +1,17 @@
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    /*y axis!! */
+    align-items:center;             /*x axis!! */
+    height: 100vh;
+    width: 100%;
+}
+
+.app-title {
+    margin-bottom: 11%;
+}
+
+.start-btn {
+    width: 40%;
+    height: 70px;
+}
