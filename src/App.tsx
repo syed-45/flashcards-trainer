@@ -1,13 +1,17 @@
-import countriesData from "./data/allCountriesData.json"
+import countriesData from "./data/allCountriesData.json";
 
 function App(): JSX.Element {
   return (
-    <div>      
-      {countriesData.map((countryData):JSX.Element => {
+    <div>
+      <span>[</span>
+      {countriesData.map((countryData): JSX.Element => {
         return (
-          <p key={countryData.name.common}>{`{ country: ${countryData.name.common}, capital: ${countryData.capital} }`}</p>
-        )
-      })}      
+          <p
+            key={countryData.name.common}
+          >{`{ "country": "${countryData.name.common}", "capital": "${countryData.capital}" }, `}</p>
+        );
+      })}
+      <span>]</span>
     </div>
   );
 }
