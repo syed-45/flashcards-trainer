@@ -14,8 +14,10 @@ function App(): JSX.Element {
           <button className="start-btn">START</button>
         </div>
       )}
-      {screen === "question" && <Question setScreen={setScreen} country="wasifcountry" />}
-      {screen === "answer" && <RevealAnswer/>}
+      {screen === "question" && (
+        <Question setScreen={setScreen} country="wasifcountry" />
+      )}
+      {screen === "answer" && <RevealAnswer />}
       {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
     </div>
   );
