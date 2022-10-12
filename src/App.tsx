@@ -4,7 +4,7 @@ import { RevealAnswer } from "./Components/RevealAnswer";
 import { useState } from "react";
 import "./App.css";
 //create a new type for screen
-// export type Screen = "start" | "question" | "answer"; 
+// export type Screen = "start" | "question" | "answer";
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<string>("answer"); // possibly change string to custom type
@@ -19,7 +19,9 @@ function App(): JSX.Element {
       {screen === "question" && (
         <Question setScreen={setScreen} country="wasifcountry" />
       )}
-      {screen === "answer" && <RevealAnswer capital="wasifcapital" setScreen={setScreen}/>}
+      {screen === "answer" && (
+        <RevealAnswer capital="wasifcapital" setScreen={setScreen} />
+      )}
       {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
     </div>
   );
