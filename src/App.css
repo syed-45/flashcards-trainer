@@ -38,3 +38,11 @@
 }
 
 /*============= answer screeen =============*/
+.capital {
+  margin-bottom: 11%;
+}
+
+button {
+  font-size: 30px;
+  padding: 30px;
+}
