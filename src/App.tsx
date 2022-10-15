@@ -26,7 +26,7 @@ function App(): JSX.Element {
   const handleKnowClick = (): void => {
     setRevealedAnswers([...revealedAnswers, tuple]);
     setTuplesArray(
-      tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple) 
+      tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)
       //comparing sme obj reference so filter fn should return true for specificied conditions
     );
     setTuple(tuplesArray[getRandomNumber(tuplesArray.length - 1)]);
