@@ -7,7 +7,7 @@ export function RevealAnswer(props: RevealAnswerProps): JSX.Element {
   }
   return (
     <div className="main-screen">
-      <h1 className="capital">{props.capital}</h1>
+      <h1 className="answer">{`The capital is ${props.capital}`}</h1>
       <button onClick={handleNextClick}>NEXT</button>
     </div>
   );
