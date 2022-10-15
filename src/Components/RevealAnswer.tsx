@@ -1,7 +1,4 @@
-interface RevealAnswerProps {
-  capital: string;
-  setScreen: React.Dispatch<React.SetStateAction<string>>;
-}
+import { RevealAnswerProps } from "../utils/types";
 
 export function RevealAnswer(props: RevealAnswerProps): JSX.Element {
   return (
