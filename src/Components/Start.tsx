@@ -1,6 +1,4 @@
-interface StartProps {
-  setScreen: React.Dispatch<React.SetStateAction<string>>;
-}
+import { StartProps } from "../utils/types";
 
 export function Start(props: StartProps): JSX.Element {
   return (

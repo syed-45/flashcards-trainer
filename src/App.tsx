@@ -1,22 +1,50 @@
-// import countries_capitals from "./data/countries&capitals.json"
+import countries_capitals from "./data/countries&capitals.json";
+import { CountryCapital } from "./utils/types";
 import { Question } from "./Components/Question";
 import { RevealAnswer } from "./Components/RevealAnswer";
 import { Start } from "./Components/Start";
 import { useState } from "react";
 import "./App.css";
-//create a new type for screen
-// export type Screen = "start" | "question" | "answer";
+import { Screen } from "./utils/types";
+import { getRandomNumber } from "./utils/getRandomNumber";
+
+/*getRandomCountry(ctry dataset)
+    next country =>
+    remove prev country from ctry dataset
+    getRandomCountry(ctry dataset)      
+    */
 
 function App(): JSX.Element {
-  const [screen, setScreen] = useState<string>("start"); // possibly change string to custom type
+  const [screen, setScreen] = useState<Screen>("start");
+  const [tuplesArray, setTuplesArray] =
+    useState<CountryCapital[]>(countries_capitals);
+  const [tuple, setTuple] = useState<CountryCapital>(
+    tuplesArray[getRandomNumber(tuplesArray.length - 1)]
+  );
+  const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
+
+  const handleKnowClick = (): void => {
+    setRevealedAnswers([...revealedAnswers, tuple]);
+    setTuplesArray(
+      tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple) 
+      //comparing sme obj reference so filter fn should return true for specificied conditions
+    );
+    setTuple(tuplesArray[getRandomNumber(tuplesArray.length - 1)]);
+    console.log(tuple, revealedAnswers);
+  };
+
   return (
     <div>
       {screen === "start" && <Start setScreen={setScreen} />}
       {screen === "question" && (
-        <Question setScreen={setScreen} country="wasifcountry" />
+        <Question
+          setScreen={setScreen}
+          country={tuple.country}
+          handleKnowClick={handleKnowClick}
+        />
       )}
       {screen === "answer" && (
-        <RevealAnswer capital="wasifcapital" setScreen={setScreen} />
+        <RevealAnswer capital={tuple.capital} setScreen={setScreen} />
       )}
       {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
     </div>
