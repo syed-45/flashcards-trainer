@@ -8,12 +8,6 @@ import "./App.css";
 import { Screen } from "./utils/types";
 import { getRandomNumber } from "./utils/getRandomNumber";
 
-/*getRandomCountry(ctry dataset)
-    next country =>
-    remove prev country from ctry dataset
-    getRandomCountry(ctry dataset)      
-    */
-//test local passphrase
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
   const [tuplesArray, setTuplesArray] =
@@ -33,9 +27,10 @@ function App(): JSX.Element {
     console.log(tuple, revealedAnswers);
   };
 
+
   return (
     <div>
-      {screen === "start" && <Start setScreen={setScreen} />}
+      {screen === "start" && <Start setScreen={setScreen}/>}
       {screen === "question" && (
         <Question
           setScreen={setScreen}
@@ -44,7 +39,10 @@ function App(): JSX.Element {
         />
       )}
       {screen === "answer" && (
-        <RevealAnswer capital={tuple.capital} setScreen={setScreen} />
+        <RevealAnswer 
+          handleKnowClick={handleKnowClick}
+          capital={tuple.capital} setScreen={setScreen}
+        />
       )}
       {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
     </div>

@@ -7,6 +7,7 @@ export interface StartProps {
 export interface RevealAnswerProps {
   capital: string;
   setScreen: React.Dispatch<React.SetStateAction<Screen>>;
+  handleKnowClick: () => void;
 }
 
 export interface QuestionProps {

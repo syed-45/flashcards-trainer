@@ -7,7 +7,7 @@ export function Question(props: QuestionProps): JSX.Element {
       <h1 className="country">{props.country + "!!!!!"}</h1>
       <div className="question-screen-btns">
         <button onClick={props.handleKnowClick}>know</button>
-        <button onClick={() => console.log("hadnle know click!")}>
+        <button onClick={() => props.setScreen('answer')}>
           don't know
         </button>
       </div>
