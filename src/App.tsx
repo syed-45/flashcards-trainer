@@ -3,32 +3,33 @@ import { CountryCapital } from "./utils/types";
 import { Question } from "./Components/Question";
 import { RevealAnswer } from "./Components/RevealAnswer";
 import { Start } from "./Components/Start";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Screen } from "./utils/types";
 import { getRandomNumber } from "./utils/getRandomNumber";
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
-  const [tuplesArray, setTuplesArray] =
-    useState<CountryCapital[]>(countries_capitals);
-  const [tuple, setTuple] = useState<CountryCapital>(
-    tuplesArray[getRandomNumber(tuplesArray.length - 1)]
-  );
+  const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(countries_capitals);  
+  const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
-
+    
+  useEffect(() => {
+    const randomIndex = getRandomNumber(tuplesArray.length - 1)
+    setTuple(tuplesArray[randomIndex]);
+  }, [tuplesArray])
+  
   const handleKnowClick = (): void => {
-    setRevealedAnswers([...revealedAnswers, tuple]);
     if (tuplesArray[1]!==undefined) {
+      setRevealedAnswers([...revealedAnswers, tuple]);
       setTuplesArray(
-      tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)
-      //comparing sme obj reference so filter fn should return true for specificied conditions
-      );
-      setTuple(tuplesArray[getRandomNumber(tuplesArray.length - 1)]);
-      console.log(tuple, revealedAnswers);
-    } else {
-      console.log('finished all the cards!!!')
-    }
+        tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)        
+        //comparing sme obj reference so filter fn should return true for specificied conditions
+        );      
+      } else {
+        console.log('finished all the cards!!!')
+      }
+      // console.log(tuple, revealedAnswers);
   };
 
   return (
