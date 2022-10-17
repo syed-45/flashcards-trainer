@@ -7,34 +7,43 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Screen } from "./utils/types";
 import { getRandomNumber } from "./utils/getRandomNumber";
+import { Finish } from "./Components/Finish";
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
-  const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(countries_capitals);  
+  const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(
+    countries_capitals.slice(0, 5)
+  );
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
-  const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);  
-    
+  const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
+
   useEffect(() => {
-    const randomIndex = getRandomNumber(tuplesArray.length - 1)
+    const randomIndex = getRandomNumber(tuplesArray.length - 1);
     setTuple(tuplesArray[randomIndex]);
-  }, [tuplesArray])
-  
+  }, [tuplesArray]);
+
   const handleKnowClick = (): void => {
     if (tuplesArray.length > 1) {
       setRevealedAnswers([...revealedAnswers, tuple]);
       setTuplesArray(
-        tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)        
+        tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)
         //comparing sme obj reference so filter fn should return true for specificied conditions
-        );      
-      } else {
-        console.log('finished all the cards!!!')
-      }
-      // console.log(tuple, revealedAnswers);
+      );
+    } else {
+      setScreen("finish");
+    }
+    // console.log(tuple, revealedAnswers);
+  };
+
+  const handleResetClick = (): void => {
+    setScreen("question");
+    setTuplesArray(countries_capitals.slice(0, 5));
+    setRevealedAnswers([]);
   };
 
   return (
     <div>
-      {screen === "start" && <Start setScreen={setScreen}/>}
+      {screen === "start" && <Start setScreen={setScreen} />}
       {screen === "question" && (
         <Question
           setScreen={setScreen}
@@ -43,13 +52,15 @@ function App(): JSX.Element {
         />
       )}
       {screen === "answer" && (
-        <RevealAnswer 
+        <RevealAnswer
           handleKnowClick={handleKnowClick}
           capital={tuple.capital}
           setScreen={setScreen}
         />
       )}
-      {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
+      {screen === "finish" && (
+        <Finish setScreen={setScreen} handleResetClick={handleResetClick} />
+      )}
     </div>
   );
 }
