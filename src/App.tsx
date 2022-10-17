@@ -3,34 +3,42 @@ import { CountryCapital } from "./utils/types";
 import { Question } from "./Components/Question";
 import { RevealAnswer } from "./Components/RevealAnswer";
 import { Start } from "./Components/Start";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Screen } from "./utils/types";
 import { getRandomNumber } from "./utils/getRandomNumber";
+import { Finish } from "./Components/Finish";
 
-/*getRandomCountry(ctry dataset)
-    next country =>
-    remove prev country from ctry dataset
-    getRandomCountry(ctry dataset)      
-    */
-//test local passphrase
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
-  const [tuplesArray, setTuplesArray] =
-    useState<CountryCapital[]>(countries_capitals);
-  const [tuple, setTuple] = useState<CountryCapital>(
-    tuplesArray[getRandomNumber(tuplesArray.length - 1)]
+  const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(
+    countries_capitals.slice(0, 5)
   );
+  const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
 
+  useEffect(() => {
+    const randomIndex = getRandomNumber(tuplesArray.length - 1);
+    setTuple(tuplesArray[randomIndex]);
+  }, [tuplesArray]);
+
   const handleKnowClick = (): void => {
-    setRevealedAnswers([...revealedAnswers, tuple]);
-    setTuplesArray(
-      tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)
-      //comparing sme obj reference so filter fn should return true for specificied conditions
-    );
-    setTuple(tuplesArray[getRandomNumber(tuplesArray.length - 1)]);
-    console.log(tuple, revealedAnswers);
+    if (tuplesArray.length > 1) {
+      setRevealedAnswers([...revealedAnswers, tuple]);
+      setTuplesArray(
+        tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)
+        //comparing sme obj reference so filter fn should return true for specificied conditions
+      );
+    } else {
+      setScreen("finish");
+    }
+    // console.log(tuple, revealedAnswers);
+  };
+
+  const handleResetClick = (): void => {
+    setScreen("question");
+    setTuplesArray(countries_capitals.slice(0, 5));
+    setRevealedAnswers([]);
   };
 
   return (
@@ -44,9 +52,15 @@ function App(): JSX.Element {
         />
       )}
       {screen === "answer" && (
-        <RevealAnswer capital={tuple.capital} setScreen={setScreen} />
+        <RevealAnswer
+          handleKnowClick={handleKnowClick}
+          capital={tuple.capital}
+          setScreen={setScreen}
+        />
       )}
-      {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
+      {screen === "finish" && (
+        <Finish setScreen={setScreen} handleResetClick={handleResetClick} />
+      )}
     </div>
   );
 }
