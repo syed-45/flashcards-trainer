@@ -12,7 +12,7 @@ function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
   const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(countries_capitals);  
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
-  const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
+  const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);  
     
   useEffect(() => {
     const randomIndex = getRandomNumber(tuplesArray.length - 1)
@@ -20,7 +20,7 @@ function App(): JSX.Element {
   }, [tuplesArray])
   
   const handleKnowClick = (): void => {
-    if (tuplesArray[1]!==undefined) {
+    if (tuplesArray.length > 1) {
       setRevealedAnswers([...revealedAnswers, tuple]);
       setTuplesArray(
         tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)        
@@ -45,7 +45,8 @@ function App(): JSX.Element {
       {screen === "answer" && (
         <RevealAnswer 
           handleKnowClick={handleKnowClick}
-          capital={tuple.capital} setScreen={setScreen}
+          capital={tuple.capital}
+          setScreen={setScreen}
         />
       )}
       {/* {countries_capitals.map((country)=><p key={country.country}>{country.country}</p>)} */}
