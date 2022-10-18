@@ -11,9 +11,8 @@ import { Finish } from "./Components/Finish";
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
-  const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(
-    countries_capitals.slice(0, 5)
-  );
+  const [tuplesArray, setTuplesArray] =
+    useState<CountryCapital[]>(countries_capitals);
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
 
@@ -37,7 +36,7 @@ function App(): JSX.Element {
 
   const handleResetClick = (): void => {
     setScreen("question");
-    setTuplesArray(countries_capitals.slice(0, 5));
+    setTuplesArray(countries_capitals);
     setRevealedAnswers([]);
   };
 
