@@ -11,9 +11,8 @@ import { Finish } from "./Components/Finish";
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
-  const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(
-    countries_capitals
-  );
+  const [tuplesArray, setTuplesArray] =
+    useState<CountryCapital[]>(countries_capitals);
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
 
