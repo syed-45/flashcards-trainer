@@ -1,5 +1,15 @@
+body {
+  font-family: "Titillium Web", sans-serif;
+}
+
+button {
+  font-family: "Titillium Web", sans-serif;
+}
+
 /*============= shared by all screens =============*/
 .main-screen {
+  color: white;
+  font-size: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center; /*y axis!! */
@@ -15,7 +25,8 @@
 
 .start-btn {
   width: 40%;
-  height: 110px;
+  font-size: 30px;
+  padding: 30px;
 }
 
 /*============= question screen =============*/
@@ -42,7 +53,7 @@
   margin-bottom: 11%;
 }
 
-button {
+.next-btn {
   font-size: 30px;
   padding: 30px;
 }

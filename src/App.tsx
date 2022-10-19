@@ -8,6 +8,7 @@ import "./App.css";
 import { Screen } from "./utils/types";
 import { getRandomNumber } from "./utils/getRandomNumber";
 import { Finish } from "./Components/Finish";
+const coloursArr = ["#264653", "#E9C46A", "#F4A261", "#E76F51"];
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
@@ -15,6 +16,7 @@ function App(): JSX.Element {
     useState<CountryCapital[]>(countries_capitals);
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
+  const [colour, setColour] = useState<string>("");
 
   useEffect(() => {
     const randomIndex = getRandomNumber(tuplesArray.length - 1);
@@ -27,7 +29,7 @@ function App(): JSX.Element {
       setTuplesArray(
         tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)
         //comparing sme obj reference so filter fn should return true for specificied conditions
-      );
+        )      
     } else {
       setScreen("finish");
     }
@@ -40,8 +42,13 @@ function App(): JSX.Element {
     setRevealedAnswers([]);
   };
 
+  useEffect(() => {
+    const randomIndex = getRandomNumber(coloursArr.length - 2);
+    setColour(prev => coloursArr.filter((colour: string) => colour !== prev)[randomIndex]);
+    }, [tuple]);
+
   return (
-    <div>
+    <div style={{backgroundColor: screen === "start" ? '#2A9D8F': colour}}>
       {screen === "start" && <Start setScreen={setScreen} />}
       {screen === "question" && (
         <Question
