@@ -92,8 +92,6 @@ button {
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -147,6 +145,11 @@ button {
 }
 
 .next-btn {
+  font-size: 30px;
+  padding: 30px;
+}
+
+.reset-btn {
   font-size: 30px;
   padding: 30px;
 }
