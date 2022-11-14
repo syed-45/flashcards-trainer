@@ -1,5 +1,6 @@
 body {
   font-family: "Titillium Web", sans-serif;
+  margin: 0;
 }
 
 /* ----------------------------------------------
@@ -8,12 +9,6 @@ body {
  * See http://animista.net/license for more info. 
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * animation fade-in
- * ----------------------------------------
- */
 @-webkit-keyframes fade-in {
   0% {
     opacity: 0;
@@ -33,47 +28,34 @@ body {
 
 .start-colours {
   background-color: #2a9d8f;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 
 .colours1 {
   background-color: #264653;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 
 .colours2 {
   background-color: #e9c46a;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 
 .colours3 {
   background-color: #f4a261;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 
 .colours4 {
   background-color: #e76f51;
+}
+
+.start-colours, .colours1, .colours2, .colours3, .colours4 {
   transition-property: background-color;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
-  transition-delay: 0s;
+  transition-delay: 0s;  
 }
 
 button {
-  -webkit-animation: fade-in 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  animation: fade-in 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  -webkit-animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   font-family: "Titillium Web", sans-serif;
   /* font-family: "JetBrains Mono",monospace; */
   align-items: center;
@@ -111,22 +93,24 @@ button {
 
 /*============= start screen =============*/
 .app-title {
-  margin-bottom: 11%;
+  margin-bottom: 150px;
 }
 
 .start-btn {
-  width: 40%;
+  width: 200px;
   font-size: 30px;
   padding: 30px;
 }
 
 /*============= question screen =============*/
 .country {
-  margin-bottom: 11%;
+  margin-bottom: 150px;
+  -webkit-animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .question-screen-btns {
-  width: 50%;
+  width: 550px;
   display: flex;
   flex-direction: row;
   justify-content: center; /*y axis!! */
@@ -137,11 +121,14 @@ button {
 .question-screen-btns > button {
   font-size: 30px;
   padding: 30px;
+  width: 50%
 }
 
 /*============= answer screeen =============*/
 .answer {
-  margin-bottom: 11%;
+  margin-bottom: 150px;
+  -webkit-animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .next-btn {

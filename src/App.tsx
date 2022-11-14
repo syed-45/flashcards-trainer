@@ -57,6 +57,7 @@ function App(): JSX.Element {
       {screen === "start" && <Start setScreen={setScreen} />}
       {screen === "question" && (
         <Question
+          key={tuple.country}
           setScreen={setScreen}
           country={tuple.country}
           handleKnowClick={handleKnowClick}
