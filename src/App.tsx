@@ -8,6 +8,7 @@ import "./App.css";
 import { Screen } from "./utils/types";
 import { getRandomNumber } from "./utils/getRandomNumber";
 import { Finish } from "./Components/Finish";
+const classNames = ["colours1", "colours2", "colours3", "colours4"];
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>("start");
@@ -15,10 +16,18 @@ function App(): JSX.Element {
     useState<CountryCapital[]>(countries_capitals);
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
+  const [className, setClassName] = useState<string>("");
 
   useEffect(() => {
     const randomIndex = getRandomNumber(tuplesArray.length - 1);
     setTuple(tuplesArray[randomIndex]);
+    setClassName((prev) => {
+      const filteredClassNames = classNames.filter(
+        (className: string) => className !== prev
+      );
+      const randomIndex = getRandomNumber(filteredClassNames.length - 1);
+      return filteredClassNames[randomIndex];
+    });
   }, [tuplesArray]);
 
   const handleKnowClick = (): void => {
@@ -41,10 +50,11 @@ function App(): JSX.Element {
   };
 
   return (
-    <div>
+    <div className={screen === "start" ? "start-colours" : className}>
       {screen === "start" && <Start setScreen={setScreen} />}
       {screen === "question" && (
         <Question
+          key={tuple.country}
           setScreen={setScreen}
           country={tuple.country}
           handleKnowClick={handleKnowClick}

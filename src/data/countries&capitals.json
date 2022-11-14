@@ -169,8 +169,6 @@
 
   { "country": "Taiwan", "capital": "Taipei" },
 
-  { "country": "Macau", "capital": "undefined" },
-
   { "country": "Haiti", "capital": "Port-au-Prince" },
 
   { "country": "Uzbekistan", "capital": "Tashkent" },
@@ -197,8 +195,6 @@
   { "country": "Republic of the Congo", "capital": "Brazzaville" },
 
   { "country": "British Indian Ocean Territory", "capital": "Diego Garcia" },
-
-  { "country": "Bouvet Island", "capital": "undefined" },
 
   { "country": "Ghana", "capital": "Accra" },
 
@@ -386,8 +382,6 @@
 
   { "country": "Guinea", "capital": "Conakry" },
 
-  { "country": "Heard Island and McDonald Islands", "capital": "undefined" },
-
   { "country": "Kenya", "capital": "Nairobi" },
 
   { "country": "Ukraine", "capital": "Kyiv" },
@@ -403,8 +397,6 @@
   { "country": "Cocos (Keeling) Islands", "capital": "West Island" },
 
   { "country": "Caribbean Netherlands", "capital": "Kralendijk" },
-
-  { "country": "Antarctica", "capital": "undefined" },
 
   { "country": "Andorra", "capital": "Andorra la Vella" },
 
