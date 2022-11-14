@@ -19,13 +19,13 @@ function App(): JSX.Element {
   const [className, setClassName] = useState<string>("");
 
   useEffect(() => {
-    const randomIndex = getRandomNumber(tuplesArray.length - 1);
+    let randomIndex = getRandomNumber(tuplesArray.length - 1);
     setTuple(tuplesArray[randomIndex]);
     setClassName((prev) => {
       const filteredClassNames = classNames.filter(
         (className: string) => className !== prev
       );
-      const randomIndex = getRandomNumber(filteredClassNames.length - 1);
+      randomIndex = getRandomNumber(filteredClassNames.length - 1);
       return filteredClassNames[randomIndex];
     });
   }, [tuplesArray]);
