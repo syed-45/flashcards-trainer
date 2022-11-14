@@ -1,3 +1,4 @@
+/*============= shared by all screens =============*/
 body {
   font-family: "Titillium Web", sans-serif;
   margin: 0;
@@ -72,8 +73,7 @@ button {
   box-sizing: border-box;
   color: #36395a;
   cursor: pointer;
-  display: inline-flex;
-  height: 100px;
+  display: inline-flex;  
   justify-content: center;
   line-height: 1;
   list-style: none;
@@ -83,7 +83,6 @@ button {
   text-decoration: none;
 }
 
-/*============= shared by all screens =============*/
 .main-screen {
   color: white;  
   display: flex;
@@ -118,7 +117,7 @@ h1 {
 }
 
 .question-screen-btns {
-  width: 600px;
+  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: center; /*y axis!! */
@@ -141,22 +140,45 @@ h1 {
 
 .next-btn {
   font-size: 30px;
-  padding: 30px;
+  padding: 35px;
+  height: 100px;
 }
 
 /*============= finish screeen =============*/
 .reset-btn {
   font-size: 30px;
-  padding: 30px;
+  padding: 35px;
+  height: 100px;
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
+
   h1 {
-    font-size: 6.5rem;
+    font-size: 7rem;
+    margin-bottom: 250px;
   }  
+
+  .question-screen-btns {
+    width: 80%;
+  }
+
+  .question-screen-btns > button {
+    font-size: 50px;
+    height: 150px;
+  }
   .question-screen-btns {
     gap: 10%;
-    padding: 20px;
+    padding: 14px;
+  }
+
+  .next-btn {
+    font-size: 50px;
+    height: 150px;
+  }
+
+  .reset-btn {
+    font-size: 50px;
+    height: 150px;
   }
 }
