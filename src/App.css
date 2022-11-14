@@ -105,6 +105,7 @@ button {
 /*============= question screen =============*/
 .country {
   margin-bottom: 150px;
+  text-align: center;
   -webkit-animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
@@ -127,6 +128,7 @@ button {
 /*============= answer screeen =============*/
 .answer {
   margin-bottom: 150px;
+  text-align: center;
   -webkit-animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
