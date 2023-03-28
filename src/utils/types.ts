@@ -1,4 +1,4 @@
-export type Screen = "start" | "question" | "answer" | "finish";
+export type Screen = "start" | "question" | "answer" | "finish" | "continue";
 
 export interface StartProps {
   setScreen: React.Dispatch<React.SetStateAction<Screen>>;
@@ -11,6 +11,11 @@ export interface RevealAnswerProps {
 }
 
 export interface FinishProps {
+  setScreen: React.Dispatch<React.SetStateAction<Screen>>;
+  handleResetClick: () => void;
+}
+
+export interface ContinueProps {
   setScreen: React.Dispatch<React.SetStateAction<Screen>>;
   handleResetClick: () => void;
 }

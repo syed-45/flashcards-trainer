@@ -1,19 +1,23 @@
+import "./App.css";
 import countries_capitals from "./data/countries&capitals.json";
 import { CountryCapital } from "./utils/types";
 import { Question } from "./Components/Question";
 import { RevealAnswer } from "./Components/RevealAnswer";
 import { Start } from "./Components/Start";
 import { useEffect, useState } from "react";
-import "./App.css";
 import { Screen } from "./utils/types";
 import { getRandomNumber } from "./utils/getRandomNumber";
 import { Finish } from "./Components/Finish";
+import { Continue } from "./Components/Continue";
+
 const classNames = ["colours1", "colours2", "colours3", "colours4"];
+const savedData = localStorage.getItem('myData') 
+const savedDataJSON = JSON.parse(savedData || '[]')
 
 function App(): JSX.Element {
-  const [screen, setScreen] = useState<Screen>("start");
+  const [screen, setScreen] = useState<Screen>(savedDataJSON[0] ? "continue" : "start");
   const [tuplesArray, setTuplesArray] =
-    useState<CountryCapital[]>(countries_capitals);
+    useState<CountryCapital[]>(savedDataJSON[0] ? savedDataJSON : countries_capitals); 
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
   const [className, setClassName] = useState<string>("");
@@ -28,6 +32,21 @@ function App(): JSX.Element {
       randomIndex = getRandomNumber(filteredClassNames.length - 1);
       return filteredClassNames[randomIndex];
     });
+  }, [tuplesArray]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      // Save data to local storage
+      if (tuplesArray.length < 256) {
+        localStorage.setItem('myData', JSON.stringify(tuplesArray));
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
   }, [tuplesArray]);
 
   const handleKnowClick = (): void => {
@@ -69,6 +88,9 @@ function App(): JSX.Element {
       )}
       {screen === "finish" && (
         <Finish setScreen={setScreen} handleResetClick={handleResetClick} />
+      )}
+      {screen === "continue" && (
+        <Continue setScreen={setScreen} handleResetClick={handleResetClick} />
       )}
     </div>
   );
