@@ -30,7 +30,7 @@ function App(): JSX.Element {
     setTuple(tuplesArray[randomIndex]);
     setClassName((prev) => {
       const filteredClassNames = classNames.filter(
-        (className: string) => className !== prev
+        (className) => className !== prev
       );
       randomIndex = getRandomNumber(filteredClassNames.length - 1);
       return filteredClassNames[randomIndex];
@@ -57,6 +57,7 @@ function App(): JSX.Element {
     setScreen("question");
     setTuplesArray(countries_capitals.slice(0, 3));
     setRevealedAnswers([]);
+    localStorage.removeItem('myData')
   };
 
   return (
