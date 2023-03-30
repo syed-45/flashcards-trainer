@@ -11,13 +11,16 @@ import { Finish } from "./Components/Finish";
 import { Continue } from "./Components/Continue";
 
 const classNames = ["colours1", "colours2", "colours3", "colours4"];
-const savedData = localStorage.getItem('myData') 
-const savedDataJSON = JSON.parse(savedData || '[]')
+const savedData = localStorage.getItem("myData");
+const savedDataJSON = JSON.parse(savedData || "[]");
 
 function App(): JSX.Element {
-  const [screen, setScreen] = useState<Screen>(savedDataJSON[0] ? "continue" : "start");
-  const [tuplesArray, setTuplesArray] =
-    useState<CountryCapital[]>(savedDataJSON[0] ? savedDataJSON : countries_capitals); 
+  const [screen, setScreen] = useState<Screen>(
+    savedDataJSON[0] ? "continue" : "start"
+  );
+  const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(
+    savedDataJSON[0] ? savedDataJSON : countries_capitals.slice(0, 3)
+  );
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
   const [className, setClassName] = useState<string>("");
@@ -32,21 +35,9 @@ function App(): JSX.Element {
       randomIndex = getRandomNumber(filteredClassNames.length - 1);
       return filteredClassNames[randomIndex];
     });
-  }, [tuplesArray]);
-
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      // Save data to local storage
-      if (tuplesArray.length < 256) {
-        localStorage.setItem('myData', JSON.stringify(tuplesArray));
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
+    if (tuplesArray.length < 3) {
+      localStorage.setItem("myData", JSON.stringify(tuplesArray));
+    }
   }, [tuplesArray]);
 
   const handleKnowClick = (): void => {
@@ -64,7 +55,7 @@ function App(): JSX.Element {
 
   const handleResetClick = (): void => {
     setScreen("question");
-    setTuplesArray(countries_capitals);
+    setTuplesArray(countries_capitals.slice(0, 3));
     setRevealedAnswers([]);
   };
 
