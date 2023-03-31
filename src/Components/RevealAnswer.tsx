@@ -3,7 +3,6 @@ import { RevealAnswerProps } from "../utils/types";
 export function RevealAnswer(props: RevealAnswerProps): JSX.Element {
   const handleNextClick = (): void => {
     props.handleKnowClick();
-    props.setScreen("question");
   };
   return (
     <div className="main-screen">
