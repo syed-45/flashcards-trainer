@@ -20,7 +20,7 @@ function App(): JSX.Element {
     isThereData ? "continue" : "start"
   );
   const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(
-    isThereData ? savedDataJSON : countries_capitals.slice(0, 3)
+    isThereData ? savedDataJSON : countries_capitals
   );
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
@@ -36,7 +36,7 @@ function App(): JSX.Element {
       randomIndex = getRandomNumber(filteredClassNames.length - 1);
       return filteredClassNames[randomIndex];
     });
-    if (tuplesArray.length < 3) {
+    if (tuplesArray.length < 256) {
       localStorage.setItem("myData", JSON.stringify(tuplesArray));
     }
   }, [tuplesArray]);
@@ -58,7 +58,7 @@ function App(): JSX.Element {
 
   const handleResetClick = (): void => {
     setScreen("question");
-    setTuplesArray(countries_capitals.slice(0, 3));
+    setTuplesArray(countries_capitals);
     setRevealedAnswers([]);
     localStorage.removeItem("myData");
   };
