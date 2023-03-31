@@ -13,7 +13,7 @@ import { getRandomNumber } from "./utils/getRandomNumber";
 const classNames = ["colours1", "colours2", "colours3", "colours4"];
 const savedData = localStorage.getItem("myData");
 const savedDataJSON: CountryCapital[] = JSON.parse(savedData || "[]");
-const isThereData: boolean = savedDataJSON.length === 0;
+const isThereData: boolean = savedDataJSON.length !== 0;
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>(
