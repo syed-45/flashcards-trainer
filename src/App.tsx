@@ -47,17 +47,19 @@ function App(): JSX.Element {
         tuplesArray.filter((tupleToCompare) => tupleToCompare !== tuple)
         //comparing sme obj reference so filter fn should return true for specificied conditions
       );
+      if (screen === "answer") {
+        setScreen("question");
+      }
     } else {
       setScreen("finish");
     }
-    // console.log(tuple, revealedAnswers);
   };
 
   const handleResetClick = (): void => {
     setScreen("question");
     setTuplesArray(countries_capitals.slice(0, 3));
     setRevealedAnswers([]);
-    localStorage.removeItem('myData')
+    localStorage.removeItem("myData");
   };
 
   return (
