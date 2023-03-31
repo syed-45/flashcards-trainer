@@ -1,25 +1,26 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import countries_capitals from "./data/countries&capitals.json";
 import { CountryCapital } from "./utils/types";
+import { Screen } from "./utils/types";
 import { Question } from "./Components/Question";
 import { RevealAnswer } from "./Components/RevealAnswer";
 import { Start } from "./Components/Start";
-import { useEffect, useState } from "react";
-import { Screen } from "./utils/types";
-import { getRandomNumber } from "./utils/getRandomNumber";
 import { Finish } from "./Components/Finish";
 import { Continue } from "./Components/Continue";
+import { getRandomNumber } from "./utils/getRandomNumber";
 
 const classNames = ["colours1", "colours2", "colours3", "colours4"];
 const savedData = localStorage.getItem("myData");
-const savedDataJSON = JSON.parse(savedData || "[]");
+const savedDataJSON: CountryCapital[] = JSON.parse(savedData || "[]");
+const isThereData: boolean = savedDataJSON.length === 0;
 
 function App(): JSX.Element {
   const [screen, setScreen] = useState<Screen>(
-    savedDataJSON[0] ? "continue" : "start"
+    isThereData ? "continue" : "start"
   );
   const [tuplesArray, setTuplesArray] = useState<CountryCapital[]>(
-    savedDataJSON[0] ? savedDataJSON : countries_capitals.slice(0, 3)
+    isThereData ? savedDataJSON : countries_capitals.slice(0, 3)
   );
   const [tuple, setTuple] = useState<CountryCapital>(tuplesArray[0]);
   const [revealedAnswers, setRevealedAnswers] = useState<CountryCapital[]>([]);
